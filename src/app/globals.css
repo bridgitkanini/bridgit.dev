@@ -2,20 +2,82 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 213 100% 98%;
+    --foreground: 222 100% 19%;
+    --muted: 201 100% 42%;
+    --muted-foreground: 201 100% 32%;
+    --popover: 213 100% 98%;
+    --popover-foreground: 222 100% 19%;
+    --border: 201 100% 42%;
+    --input: 201 100% 42%;
+    --card: 213 100% 98%;
+    --card-foreground: 222 100% 19%;
+    --primary: 222 100% 19%;
+    --primary-foreground: 213 100% 98%;
+    --secondary: 201 100% 42%;
+    --secondary-foreground: 213 100% 98%;
+    --accent: 195 100% 42%;
+    --accent-foreground: 213 100% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 213 100% 98%;
+    --ring: 195 100% 42%;
+    --radius: 0.5rem;
+  }
+
+  :root[class~="dark"] {
+    --background: 222 100% 5%;
+    --foreground: 48 100% 67%;
+    --muted: 222 100% 12%;
+    --muted-foreground: 48 100% 67%;
+    --popover: 222 100% 5%;
+    --popover-foreground: 48 100% 67%;
+    --border: 221 100% 20%;
+    --input: 221 100% 20%;
+    --card: 222 100% 5%;
+    --card-foreground: 48 100% 67%;
+    --primary: 48 100% 67%;
+    --primary-foreground: 222 100% 5%;
+    --secondary: 221 100% 20%;
+    --secondary-foreground: 48 100% 67%;
+    --accent: 48 100% 80%;
+    --accent-foreground: 222 100% 5%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 48 100% 67%;
+    --ring: 221 100% 20%;
+    --radius: 0.5rem;
   }
 }
 
+@layer utilities {
+  .bg-background {
+    background-color: hsl(var(--background));
+  }
+  .text-foreground {
+    color: hsl(var(--foreground));
+  }
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-background text-foreground;
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+@layer components {
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r;
+  }
+
+  .light-gradient {
+    @apply from-[#03045e] via-[#0077b6] to-[#00b4d8];
+  }
+
+  .dark-gradient {
+    @apply from-[#ffd60a] via-[#ffc300] to-[#003566];
+  }
 }
